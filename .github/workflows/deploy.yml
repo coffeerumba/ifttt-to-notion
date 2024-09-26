@@ -49,7 +49,7 @@ jobs:
           gcloud functions deploy iftttToNotion \
             --gen2 \
             --runtime=nodejs18 \
-            --region=asia-northeast1 \
+            --region=global \
             --source=./ \
             --trigger-http \
             --allow-unauthenticated \
