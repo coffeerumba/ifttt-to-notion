@@ -6,7 +6,7 @@ type RequestBody = {
   userName: string;
   linkToTweet: string;
   createdAt: string;
-  type: "tweet" | "like";
+  embed: string;
 };
 
 const accessToken = process.env.ACCESS_TOKEN;
@@ -27,13 +27,13 @@ export const iftttToNotion = functions.http(
     const text = body.text;
     const createdAt = body.createdAt;
     const username = body.userName;
-    const type = body.type;
+    const embed = body.embed;
 
     try {
       const response = await createNotionPageByTweet({
         text,
         createdAt,
-        type,
+        embed,
         url,
         username,
       });
