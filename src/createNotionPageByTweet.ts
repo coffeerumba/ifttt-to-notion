@@ -32,7 +32,8 @@ export async function createNotionPageByTweet({
 }: Args) {
   const properties: Parameters<typeof notion.pages.create>[0]["properties"] = {
     text: {
-      text: '',
+      type: "rich_text",
+      rich_text: await parseTextAndUrl(text),
     },
     title: {
       title: [
