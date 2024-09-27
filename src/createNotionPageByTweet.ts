@@ -31,6 +31,9 @@ export async function createNotionPageByTweet({
   embed,
 }: Args) {
   const properties: Parameters<typeof notion.pages.create>[0]["properties"] = {
+    text: {
+      text: '',
+    },
     title: {
       title: [
         {
