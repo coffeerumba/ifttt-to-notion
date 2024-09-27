@@ -80,7 +80,7 @@ export async function createNotionPageByTweet({
   }
 
   return notion.pages.create({
-    parent: { database_id: databaseId },
+    parent: { database_id: databaseId ?? '' },
     properties,
   });
 }
