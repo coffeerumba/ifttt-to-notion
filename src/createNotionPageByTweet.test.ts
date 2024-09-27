@@ -36,7 +36,7 @@ test("createNotionPageByTweetが正しく動作する", async () => {
     username: "username",
     url: "https://twitter.com/username/status/123456",
     createdAt: "May 26, 2023 at 12:00PM",
-    type: "tweet",
+    embed: "",
   } as const;
 
   // 関数の実行
@@ -57,7 +57,7 @@ test("createdAtが渡されていない場合、propertiesにtweet_created_atを
     text: "サンプルテキスト",
     username: "username",
     url: "https://twitter.com/username/status/123456",
-    type: "tweet",
+    embed: "",
   } as const;
 
   // 関数の実行
