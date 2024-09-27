@@ -25,9 +25,9 @@ const extractId = (url: string) => {
 
 export async function createNotionPageByTweet({
   text,
-  createdAt,
-  url,
   username,
+  url,
+  createdAt,
   embed,
 }: Args) {
   const properties: Parameters<typeof notion.pages.create>[0]["properties"] = {
