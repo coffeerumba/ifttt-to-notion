@@ -38,6 +38,8 @@ jobs:
 
       - id: "setup-gcloud"
         uses: "google-github-actions/setup-gcloud@v1"
+        with:
+          version: "<= 482.0.0"
 
       - name: "Use gcloud CLI"
         run: "gcloud info"
