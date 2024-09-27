@@ -60,6 +60,15 @@ export async function createNotionPageByTweet({
         },
       ],
     },
+    "embed": {
+      rich_text: [
+        {
+          text: {
+            content: embed,
+          },
+        },
+      ],
+    },
   };
 
   if (createdAt) {
