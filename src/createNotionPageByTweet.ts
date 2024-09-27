@@ -11,7 +11,7 @@ type Args = {
 };
 
 const apiKey = process.env.NOTION_API_KEY;
-const databaseId = "50c2c7504a404f30bc7a222e8b565396";
+const databaseId = process.env.DATABASE_ID;
 
 const notion = new Client({ auth: apiKey });
 
