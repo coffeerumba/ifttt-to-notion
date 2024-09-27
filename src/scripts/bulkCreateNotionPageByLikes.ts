@@ -23,7 +23,7 @@ async function addTweetToNotionDatabase(tweet: any) {
   try {
     const response = await createNotionPageByTweet({
       text: tweet.like.fullText,
-      //type: "like",
+      embed: "",
       url: tweet.like.expandedUrl,
       username: "",
     });
