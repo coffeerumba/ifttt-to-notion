@@ -7,7 +7,7 @@ type Args = {
   username: string;
   url: string;
   createdAt?: string;
-  type: "tweet" | "like";
+  embed: string;
 };
 
 const apiKey = process.env.NOTION_API_KEY;
@@ -28,7 +28,7 @@ export async function createNotionPageByTweet({
   createdAt,
   url,
   username,
-  type,
+  embed,
 }: Args) {
   const properties: Parameters<typeof notion.pages.create>[0]["properties"] = {
     title: {
@@ -40,16 +40,8 @@ export async function createNotionPageByTweet({
         },
       ],
     },
-    text: {
-      type: "rich_text",
-      rich_text: await parseTextAndUrl(text),
-    },
     url: {
       url: url,
-    },
-    id: {
-      type: "number",
-      number: extractId(url),
     },
     username: {
       type: "rich_text",
@@ -64,9 +56,9 @@ export async function createNotionPageByTweet({
         },
       ],
     },
-    type: {
-      type: "select",
-      select: { name: type },
+    embed: {
+      type: "rich_text",
+      rich_text: embed,
     },
   };
 
