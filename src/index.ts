@@ -23,19 +23,19 @@ export const iftttToNotion = functions.http(
     }
 
     const body: RequestBody = req.body;
-    const url = body.linkToTweet;
     const text = body.text;
-    const createdAt = body.createdAt;
     const username = body.userName;
+    const url = body.linkToTweet;
+    const createdAt = body.createdAt;
     const embed = body.embed;
 
     try {
       const response = await createNotionPageByTweet({
         text,
+        username,
+        url,
         createdAt,
         embed,
-        url,
-        username,
       });
       console.log("New page created:", response);
       res.json(response);
