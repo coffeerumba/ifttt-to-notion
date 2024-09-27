@@ -103,8 +103,7 @@ export async function createNotionPageByTweet({
                               "link": {
                                   "url": "https://en.wikipedia.org/wiki/Lacinato_kale"
                               }
-                          },
-                          "href": "https://en.wikipedia.org/wiki/Lacinato_kale"
+                          }
                       }
                   ],
                   "color": "default"
