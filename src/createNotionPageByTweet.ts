@@ -61,6 +61,7 @@ export async function createNotionPageByTweet({
       ],
     },
     "embed": {
+      type: "rich_text",
       rich_text: [
         {
           text: {
