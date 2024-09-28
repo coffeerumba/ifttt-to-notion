@@ -88,7 +88,7 @@ export async function createNotionPageByTweet({
   }
   
   const response: QueryDatabaseResponse = await notion.databases.query({
-    database_id: databaseId ?? '-',
+    database_id: databaseId ?? '',
     filter: {
       property: 'tweet_id',
       number: {
@@ -99,7 +99,6 @@ export async function createNotionPageByTweet({
   if (response.results.length) {
     console.log("すでに登録されているtweet_idです。" + extractId(linkToTweet));
     return {};
-    
   }
   
   return notion.pages.create({
