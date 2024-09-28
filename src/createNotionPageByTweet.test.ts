@@ -33,8 +33,9 @@ test("createNotionPageByTweetが正しく動作する", async () => {
   // モックデータ
   const mockData = {
     text: "サンプルテキスト",
-    username: "username",
-    url: "https://twitter.com/username/status/123456",
+    userName: "username",
+    linkToTweet: "https://twitter.com/username/status/123456",
+    firstLinkUrl: "https://www.google.com/",
     createdAt: "May 26, 2023 at 12:00PM",
     embed: "",
   } as const;
@@ -55,8 +56,9 @@ test("createdAtが渡されていない場合、propertiesにtweet_created_atを
   // モックデータ
   const mockData = {
     text: "サンプルテキスト",
-    username: "username",
-    url: "https://twitter.com/username/status/123456",
+    userName: "username",
+    linkToTweet: "https://twitter.com/username/status/123456",
+    firstLinkUrl: "https://www.google.com/",
     embed: "",
   } as const;
 
