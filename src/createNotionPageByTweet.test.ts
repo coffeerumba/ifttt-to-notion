@@ -21,8 +21,9 @@ const server = setupServer(
     );
   }),
   rest.post("https://api.notion.com/v1/databases/:databaseId/query", async (req, res, ctx) => {
+    const { databaseId } = req.params;
     const body = await req.json();
-    mockQueryFn(body);
+    mockQueryFn(body, databaseId);
     return res(
       ctx.json({
         results: []
