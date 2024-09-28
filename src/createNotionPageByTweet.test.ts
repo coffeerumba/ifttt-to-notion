@@ -4,6 +4,7 @@ import { test, vi, expect, beforeAll, afterEach, afterAll } from "vitest";
 import { createNotionPageByTweet } from "./createNotionPageByTweet";
 
 const mockFn = vi.fn();
+const mockQueryFn = vi.fn();
 
 // MSW (Mock Service Worker) の設定
 const server = setupServer(
@@ -18,6 +19,15 @@ const server = setupServer(
         last_edited_time: "2023-05-26T12:00:00.000Z",
       })
     );
+  }),
+  rest.post("https://api.notion.com/v1/databases/:databaseId/query", async (req, res, ctx) => {
+    const body = await req.json();
+    mockQueryFn(body);
+    return res(
+      ctx.json({
+        results: []
+      })
+    );
   })
 );
 
@@ -26,6 +36,7 @@ beforeAll(() => server.listen());
 afterEach(() => {
   server.resetHandlers();
   mockFn.mockClear();
+  mockQueryFn.mockClear();
 });
 afterAll(() => server.close());
 
