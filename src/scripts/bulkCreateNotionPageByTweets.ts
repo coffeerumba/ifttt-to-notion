@@ -31,10 +31,11 @@ async function addTweetToNotionDatabase(tweet: any) {
 
     const response = await createNotionPageByTweet({
       text: tweet.tweet.full_text,
+      userName,
+      linkToTweet: tweetUrl,
+      firstLinkUrl: "",
       createdAt: adjustedDate,
       embed: "",
-      url: tweetUrl,
-      username,
     });
 
     console.log("New page created:", response.id, tweet.tweet.id);
