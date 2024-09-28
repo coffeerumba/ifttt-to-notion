@@ -31,6 +31,10 @@ export async function createNotionPageByTweet({
   embed,
 }: Args) {
   const properties: Parameters<typeof notion.pages.create>[0]["properties"] = {
+    id: {
+      type: "number",
+      number: extractId(url),
+    },
     title: {
       title: [
         {
@@ -80,19 +84,21 @@ export async function createNotionPageByTweet({
   return notion.pages.create({
     parent: { database_id: databaseId ?? '' },
     properties,
-    "children": [
-          {
-              "object": "block",
-              "heading_2": {
-                  "rich_text": [
-                      {
-                          "text": {
-                              "content": "Lacinato kale"
-                          }
-                      }
-                  ]
+    /*
+    children: [
+      {
+        "object": "block",
+        "heading_2": {
+          "rich_text": [
+            {
+              "text": {
+                "content": "Lacinato kale"
               }
-          }
-      ]
+            }
+          ]
+        }
+      }
+    ]
+    */
   });
 }
