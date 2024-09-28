@@ -20,7 +20,7 @@ const server = setupServer(
       })
     );
   }),
-  rest.post("https://api.notion.com/v1/databases/:database_id/query", async (req, res, ctx) => {
+  rest.post("https://api.notion.com/v1/databases/query", async (req, res, ctx) => {
     const body = await req.json();
     mockQueryFn(body);
     return res(
