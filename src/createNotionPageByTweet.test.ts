@@ -21,9 +21,8 @@ const server = setupServer(
     );
   }),
   rest.post("https://api.notion.com/v1/databases/:database_id/query", async (req, res, ctx) => {
-    const { databaseId } = req.params;
     const body = await req.json();
-    mockQueryFn(body, databaseId);
+    mockQueryFn(body);
     return res(
       ctx.json({
         results: []
@@ -33,7 +32,7 @@ const server = setupServer(
 );
 
 // サーバーの起動と終了
-beforeAll(() => { server.listen(); process.env.DATABASE_ID = 'test-database-id'; });
+beforeAll(() => server.listen());
 afterEach(() => {
   server.resetHandlers();
   mockFn.mockClear();
