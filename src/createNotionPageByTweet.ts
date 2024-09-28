@@ -87,7 +87,8 @@ export async function createNotionPageByTweet({
     };
   }
   
-  const response: QueryDatabaseResponse = notion.databases.query({
+  //const response: QueryDatabaseResponse = 
+  await notion.databases.query({
     database_id: databaseId ?? '',
     filter: {
       property: 'tweet_id',
@@ -96,10 +97,10 @@ export async function createNotionPageByTweet({
       }
     }
   });
-  if (response.results.length) {
-    console.log("すでに登録されているtweet_idです。" + extractId(linkToTweet));
+  //if (response.results.length) {
+    //console.log("すでに登録されているtweet_idです。" + extractId(linkToTweet));
     //return false;
-  }
+  //}
   
   return notion.pages.create({
     parent: { database_id: databaseId ?? '' },
