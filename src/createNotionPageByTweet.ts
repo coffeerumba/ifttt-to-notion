@@ -1,6 +1,7 @@
 import { Client } from "@notionhq/client";
 import { convertToISO8601 } from "./convertToISO8601";
 import { parseTextAndUrl } from "./parseTextAndUrl";
+import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 
 type Args = {
   text: string;
@@ -85,7 +86,21 @@ export async function createNotionPageByTweet({
       },
     };
   }
-
+  
+  const response: QueryDatabaseResponse = await notion.databases.query({
+    database_id: databaseId ?? '',
+    filter: {
+      property: 'tweet_id',
+      number: {
+        equals: extractId(linkToTweet)
+      }
+    }
+  });
+  if (response.results.length) {
+    console.log("すでに登録されているtweet_idです。" + extractId(linkToTweet));
+    return false;
+  }
+  
   return notion.pages.create({
     parent: { database_id: databaseId ?? '' },
     properties,
