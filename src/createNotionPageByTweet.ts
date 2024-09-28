@@ -98,7 +98,7 @@ export async function createNotionPageByTweet({
   });
   if (response.results.length) {
     console.log("すでに登録されているtweet_idです。" + extractId(linkToTweet));
-    return false;
+    //return false;
   }
   
   return notion.pages.create({
