@@ -88,7 +88,7 @@ export async function createNotionPageByTweet({
   }
   
   const response: QueryDatabaseResponse = await notion.databases.query({
-    database_id: databaseId ?? '',
+    database_id: databaseId ?? '-',
     filter: {
       property: 'tweet_id',
       number: {
