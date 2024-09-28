@@ -4,8 +4,9 @@ import { parseTextAndUrl } from "./parseTextAndUrl";
 
 type Args = {
   text: string;
-  username: string;
-  url: string;
+  userName: string;
+  linkToTweet: string;
+  firstLinkUrl?: string;
   createdAt?: string;
   embed: string;
 };
@@ -25,17 +26,14 @@ const extractId = (url: string) => {
 
 export async function createNotionPageByTweet({
   text,
-  username,
-  url,
+  userName,
+  linkToTweet,
+  firstLinkUrl,
   createdAt,
   embed,
 }: Args) {
   const properties: Parameters<typeof notion.pages.create>[0]["properties"] = {
-    id: {
-      type: "number",
-      number: extractId(url),
-    },
-    title: {
+    tweet: {
       title: [
         {
           text: {
@@ -44,23 +42,26 @@ export async function createNotionPageByTweet({
         },
       ],
     },
-    url: {
-      url: url,
-    },
-    username: {
+    user_id: {
       type: "rich_text",
       rich_text: [
         {
           text: {
-            content: username,
+            content: userName,
             link: {
-              url: `https://twitter.com/${username}`,
+              url: `https://twitter.com/${userName}`,
             },
           },
         },
       ],
     },
-    "embed": {
+    url: {
+      url: linkToTweet,
+    },
+    first_link_url: {
+      url: firstLinkUrl,
+    },
+    embed: {
       type: "rich_text",
       rich_text: [
         {
@@ -70,10 +71,14 @@ export async function createNotionPageByTweet({
         },
       ],
     },
+    tweet_id: {
+      type: "number",
+      number: extractId(linkToTweet),
+    },
   };
 
   if (createdAt) {
-    properties["tweet_created_at"] = {
+    properties["tweeted_at"] = {
       type: "date",
       date: {
         start: convertToISO8601(createdAt),
