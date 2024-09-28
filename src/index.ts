@@ -5,6 +5,7 @@ type RequestBody = {
   text: string;
   userName: string;
   linkToTweet: string;
+  firstLinkUrl: string;
   createdAt: string;
   embed: string;
 };
@@ -24,16 +25,18 @@ export const iftttToNotion = functions.http(
 
     const body: RequestBody = req.body;
     const text = body.text;
-    const username = body.userName;
-    const url = body.linkToTweet;
+    const userName = body.userName;
+    const linkToTweet = body.linkToTweet;
+    const firstLinkUrl = body.firstLinkUrl;
     const createdAt = body.createdAt;
     const embed = body.embed;
 
     try {
       const response = await createNotionPageByTweet({
         text,
-        username,
-        url,
+        userName,
+        linkToTweet,
+        firstLinkUrl,
         createdAt,
         embed,
       });
