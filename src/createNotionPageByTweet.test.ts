@@ -33,7 +33,7 @@ const server = setupServer(
 );
 
 // サーバーの起動と終了
-beforeAll(() => server.listen());
+beforeAll(() => { server.listen(); process.env.DATABASE_ID = 'test-database-id'; });
 afterEach(() => {
   server.resetHandlers();
   mockFn.mockClear();
