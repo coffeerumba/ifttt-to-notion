@@ -6,7 +6,7 @@ type Args = {
   text: string;
   userName: string;
   linkToTweet: string;
-  firstLinkUrl?: string;
+  firstLinkUrl: string;
   createdAt?: string;
   embed: string;
 };
