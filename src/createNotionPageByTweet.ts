@@ -60,7 +60,7 @@ export async function createNotionPageByTweet({
       url: linkToTweet,
     },
     first_link_url: {
-      url: firstLinkUrl,
+      url: firstLinkUrl || null,
     },
     embed: {
       type: "rich_text",
